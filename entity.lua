@@ -2,9 +2,7 @@ local Class = require "3rd-party.hump.class"
 
 local Entity = Class{}
 
-function Entity:init( Bag, name )
-
-	self.id         = Bag:newID( )
+function Entity:init( name )
 
 	self.name       = name
 
@@ -22,9 +20,23 @@ function Entity:serialize( )
 
 end
 
+function Entity:setID( id )
+
+	if id then
+
+		self.id = id
+
+	end
+
+end
+
 function Entity:getID( )
 
-	return self.id
+	if self.id then
+
+		return self.id
+
+	end
 
 end
 
@@ -32,11 +44,21 @@ function Entity:destroy()
 
 end
 
-function Entity:getComponents(  )
+function Entity:getComponent( name )
+
+	return self.components[name] 
 
 end
 
-function Entity:removeComponents( )
+function Entity:removeComponent( )
+
+	self.components[name] = nil
+
+end
+
+function Entity:getAllComponents( )
+
+	return self.components
 
 end
 
