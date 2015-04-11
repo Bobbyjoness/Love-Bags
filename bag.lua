@@ -2,6 +2,7 @@ local Class = require "3rd-party.hump.class"
 
 local Bag = Class{}
 
+
 function Bag:init(  )
 
 	self.entityCount = 0
@@ -28,19 +29,41 @@ function Bag:addEntity( entity )
 
 	entity:setID( self.IDCounter )
 
+	print(#self.systems)
+
+	for i, system in ipairs(self.systems) do
+
+		print("dhd")
+
+		system:checkEntity( entity )
+
+	end
+
 end
 
-function Bag:registerSystem( name )
+function Bag:registerSystem( system )
+
+	system:checkEntities( self.entities )
+
+	self.systems[system.type][system.name] = system
+
+	self.systems[#self.systems + 1] = system
 
 end
 
 function Bag:update( dt )
 
+	for i, system in pairs( self.systems['update'] ) do
+
+		system:update( dt )
+
+	end
+
 end
 
 function Bag:draw(  )
 
-	for i,system in ipairs( self.systems['draw'] ) do
+	for i,system in pairs( self.systems['draw'] ) do
 
 		system:draw(  )
 
