@@ -56,11 +56,7 @@ function Bag:addEntity( entity )
 
 	entity:setID( self.IDCounter )
 
-	print(#self.systems)
-
 	for i, system in ipairs(self.systems) do
-
-		print("dhd")
 
 		system:checkEntity( entity )
 

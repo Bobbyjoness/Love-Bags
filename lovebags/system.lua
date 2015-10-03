@@ -75,17 +75,11 @@ function System:checkEntity( entity ) -- Checks entity and sees if this System h
 
 	for i,entC in pairs( entComponets ) do
 
-		print(entC.name.."d")
-
 		for ii,reqC in pairs(self.handlesReq) do
 
 			if entC.name == reqC then
 
-				print("g")
-
 				numReq = numReq + 1
-
-				print(numReq)
 
 			end
 
@@ -100,9 +94,9 @@ function System:checkEntity( entity ) -- Checks entity and sees if this System h
 			for i,entC in pairs( entComponets ) do
 
 				for ii,oneC in ipairs(self.handlesOne ) do
-					print(oneC)
+
 					if entC.name == oneC then
-						print("ss")
+
 						self.entities[entity:getID()] = entity
 
 					end
@@ -112,7 +106,7 @@ function System:checkEntity( entity ) -- Checks entity and sees if this System h
 			end
 
 		else 
-			print("d")
+
 			self.entities[entity:getID()] = entity
 
 		end
@@ -122,9 +116,9 @@ function System:checkEntity( entity ) -- Checks entity and sees if this System h
 end
 
 function System:checkEntities( entities )
-print(#entities)
+
 	for i,ent in ipairs( entities ) do
-		print("")
+
 		self:checkEntity( ent )
 
 	end
