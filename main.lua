@@ -1,16 +1,15 @@
-local Engine = require ("bag")
+local Lovebags = require ('lovebags')
 
-local Entity = require ("entity")
+--Components are tables. Components can also have consructors 
 
-local System = require ("system")
+local engine = Lovebags.Bag(  )
+engine:init()
 
---Components are tables. Components can also have consructors
+local dog = Lovebags.Entity()
+dog:init( "dog" )
 
-local engine = Engine(  )
-
-local dog = Entity( "dog" )
-
-local cat = Entity( "cat" )
+local cat = Lovebags.Entity()
+cat:init( "cat" )
 
 local function posComponent( x, y )
 
@@ -56,7 +55,8 @@ cat:addComponent( colorComponent( 0, 0, 255, 255 ) )
 
 
 
-local renderShapeSystem = System( "render", "draw" )
+local renderShapeSystem = Lovebags.System()
+renderShapeSystem:init( "render", "draw" )
 
 renderShapeSystem:setHandles( { "pos" , "color" }, { "rectangle", "circle" } )
 
@@ -82,7 +82,8 @@ function renderShapeSystem:draw( )
 
 end
 
-local renderUpdateSystem = System( "logic", "update" )
+local renderUpdateSystem = Lovebags.System()
+renderUpdateSystem:init( "logic", "update" )
 
 renderUpdateSystem:setHandles( { "pos" }, { } )
 
